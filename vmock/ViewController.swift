@@ -15,6 +15,8 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     {
         super.viewDidLoad()
         tableView.frame = CGRectMake(0, 300, view.frame.width, view.frame.height)
+        tableView.backgroundColor = UIColor.clearColor()
+        tableView.backgroundView?.backgroundColor = UIColor.clearColor()
         tableView.dataSource = self
         tableView.delegate = self
         tableView.registerClass(MyTableViewCell.self, forCellReuseIdentifier: "cell")
@@ -57,14 +59,33 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         // Dispose of any resources that can be recreated.
     }
 
-    func scrollViewDidScroll(scrollView: UIScrollView)
+    func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool)
     {
-        
+        if(tableView.scrollEnabled == true && scrollView.contentOffset.y < -100)
+        {
+
+            tableView.gestureRecognizers![2].enabled = true
+            tableView.scrollEnabled = false
+            UIView.animateWithDuration(0.7, animations: { () -> Void in
+                self.tableView.frame = CGRectMake(0, 300, self.view.frame.width, self.view.frame.height)
+                self.tableView.transform = CGAffineTransformMakeTranslation(0, 0)
+            })
+
+        }
     }
     
     func panned(sender:UIPanGestureRecognizer)
     {
-        
+        print(sender.velocityInView(view))
+        if(sender.velocityInView(view).y < -200)
+        {
+            sender.enabled = false
+            tableView.scrollEnabled = true
+            UIView.animateWithDuration(0.7, animations: { () -> Void in
+                self.tableView.frame = CGRectMake(0, 0, self.view.frame.width, self.view.frame.height)
+                self.tableView.transform = CGAffineTransformMakeTranslation(0, 0)
+            })
+        }
         if(sender.state == UIGestureRecognizerState.Ended)
         {
             latestTransform += sender.translationInView(view).y
