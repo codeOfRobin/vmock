@@ -12,6 +12,8 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     let tableView = UITableView()
     var latestTransform = CGFloat(0)
     let segment = UISegmentedControl(items: ["Impact","Presentation","Competencies"])
+    let webView = UIWebView(frame: CGRectMake(0, 0, 375,667 ))
+
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -38,12 +40,19 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         scroller.backgroundColor = UIColor.clearColor()
         scroller.contentSize = CGSizeMake(view.frame.width, 300)
         
-        let webView = UIWebView(frame: CGRectMake(0, 0, view.frame.width, view.frame.height))
         webView.scrollView.contentInset.bottom = view.frame.height - 300
         let path = NSBundle.mainBundle().pathForResource("cv", ofType: "pdf")
         let url = NSURL(fileURLWithPath: path!)
-        let url2 = NSURL(string: "http://www.cse.iitd.ernet.in/~amitk/SemI-2015/tut9.pdf")
-        let req = NSURLRequest(URL: url)
+        let appDel = UIApplication.sharedApplication().delegate as! AppDelegate
+        var req :NSURLRequest
+        if(appDel.url != nil)
+        {
+            req = NSURLRequest(URL: appDel.url!)
+        }
+        else
+        {
+            req = NSURLRequest(URL: url)
+        }
         webView.loadRequest(req)
         webView.scalesPageToFit = true
         scroller.addSubview(webView)
@@ -51,7 +60,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         webView.userInteractionEnabled = true
         webView.scrollView.scrollEnabled = true
 
-        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "viewWillAppear:", name: UIApplicationWillEnterForegroundNotification, object: nil)
         
         
         let pg = UITapGestureRecognizer(target: self, action: "panned:")
@@ -60,6 +69,23 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
 
         view.addSubview(tableView)
         // Do any additional setup after loading the view, typically from a nib.
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        let path = NSBundle.mainBundle().pathForResource("cv", ofType: "pdf")
+        let url = NSURL(fileURLWithPath: path!)
+        let appDel = UIApplication.sharedApplication().delegate as! AppDelegate
+        var req :NSURLRequest
+        if(appDel.url != nil)
+        {
+            req = NSURLRequest(URL: appDel.url!)
+        }
+        else
+        {
+            req = NSURLRequest(URL: url)
+        }
+        webView.loadRequest(req)
+
     }
     
     func segmentChanged(sender:UISegmentedControl)
