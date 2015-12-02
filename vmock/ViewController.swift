@@ -11,6 +11,7 @@ import UIKit
 class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,UIGestureRecognizerDelegate {
     let tableView = UITableView()
     var latestTransform = CGFloat(0)
+    let segment = UISegmentedControl(items: ["Impact","Presentation","Competencies"])
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -21,26 +22,32 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         tableView.delegate = self
         tableView.registerClass(MyTableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.contentInset.top = 300
+        tableView.separatorStyle = .None
+        
+        let header = UIVisualEffectView(frame: CGRectMake(0, 0, view.frame.width
+        , 44))
+        header.effect = UIBlurEffect(style: .Light)
+        segment.frame = CGRectMake(16, 8, view.frame.width - 32, 29)
+        segment.selectedSegmentIndex = 0
+        segment.addTarget(self, action: "segmentChanged:", forControlEvents: .ValueChanged)
+        header.addSubview(segment)
+        tableView.tableHeaderView = header
+        
+        
         let scroller = UIScrollView(frame: CGRectMake(0,0,view.frame.width,300))
         scroller.backgroundColor = UIColor.clearColor()
-        scroller.contentSize = CGSizeMake(1000, 1000)
-//        view.addSubview(scroller)
+        scroller.contentSize = CGSizeMake(view.frame.width, 300)
         
-        let webView = UIWebView(frame: scroller.frame)
+        let webView = UIWebView(frame: CGRectMake(0, 0, view.frame.width, view.frame.height))
+        webView.scrollView.contentInset.bottom = view.frame.height - 300
         let path = NSBundle.mainBundle().pathForResource("cv", ofType: "pdf")
         let url = NSURL(fileURLWithPath: path!)
         let url2 = NSURL(string: "http://www.cse.iitd.ernet.in/~amitk/SemI-2015/tut9.pdf")
-        let req = NSURLRequest(URL: url2!)
+        let req = NSURLRequest(URL: url)
         webView.loadRequest(req)
         webView.scalesPageToFit = true
-        
-        
-        
-        let img = UIImageView(frame: CGRectMake(100, 100, 100, 100))
-        img.image = UIImage(named: "screen")
         scroller.addSubview(webView)
-//        tableView.backgroundView = webView
-        tableView.backgroundView = webView
+        tableView.backgroundView = scroller
         webView.userInteractionEnabled = true
         webView.scrollView.scrollEnabled = true
 
@@ -53,6 +60,11 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
 
         view.addSubview(tableView)
         // Do any additional setup after loading the view, typically from a nib.
+    }
+    
+    func segmentChanged(sender:UISegmentedControl)
+    {
+        tableView.reloadData()
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -72,8 +84,9 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath)
     {
         cell.textLabel?.text = String(indexPath.row)
-        cell.detailTextLabel?.text = "SDAfsadfhkasdfnkjsa"
+        cell.detailTextLabel?.text = "This is the error for row " + String(indexPath.row) + " in " + segment.titleForSegmentAtIndex(segment.selectedSegmentIndex)!
     }
+    
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
         
@@ -81,7 +94,12 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath:indexPath) as! MyTableViewCell
-        let but = UIButton(frame: CGRectMake(300,0,100,100))
+        cell.backgroundColor = UIColor.clearColor()
+        let blur = UIVisualEffectView(frame: cell.frame)
+        blur.effect = UIBlurEffect(style: .ExtraLight)
+        cell.backgroundView = blur
+        let but = UIButton(frame: CGRectMake(view.frame.width-8-72,16,66,66))
+        but.layer.cornerRadius = 20
         but.titleLabel?.text = "dsaf"
         but.backgroundColor = UIColor.redColor()
         cell.addSubview(but)
@@ -155,7 +173,7 @@ class MyTableViewCell : UITableViewCell {
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String!) {
         super.init(style: UITableViewCellStyle.Subtitle, reuseIdentifier: reuseIdentifier)
-        
+
     }
     
 
