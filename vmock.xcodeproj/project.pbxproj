@@ -7,12 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		423BF0B61C0B80EE007F5C02 /* screen.png in Resources */ = {isa = PBXBuildFile; fileRef = 423BF0B51C0B80EE007F5C02 /* screen.png */; settings = {ASSET_TAGS = (); }; };
+		423BF0B61C0B80EE007F5C02 /* screen.png in Resources */ = {isa = PBXBuildFile; fileRef = 423BF0B51C0B80EE007F5C02 /* screen.png */; };
 		426052BE1C0B6E5A007ED564 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 426052BD1C0B6E5A007ED564 /* AppDelegate.swift */; };
 		426052C01C0B6E5A007ED564 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 426052BF1C0B6E5A007ED564 /* ViewController.swift */; };
 		426052C31C0B6E5A007ED564 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 426052C11C0B6E5A007ED564 /* Main.storyboard */; };
 		426052C51C0B6E5A007ED564 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 426052C41C0B6E5A007ED564 /* Assets.xcassets */; };
 		426052C81C0B6E5A007ED564 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 426052C61C0B6E5A007ED564 /* LaunchScreen.storyboard */; };
+		42A0AEF01C0F08DF005D18AA /* cv.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 42A0AEEF1C0F08DF005D18AA /* cv.pdf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		426052C41C0B6E5A007ED564 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		426052C71C0B6E5A007ED564 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		426052C91C0B6E5A007ED564 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		42A0AEEF1C0F08DF005D18AA /* cv.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = cv.pdf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				423BF0B51C0B80EE007F5C02 /* screen.png */,
 				426052C61C0B6E5A007ED564 /* LaunchScreen.storyboard */,
 				426052C91C0B6E5A007ED564 /* Info.plist */,
+				42A0AEEF1C0F08DF005D18AA /* cv.pdf */,
 			);
 			path = vmock;
 			sourceTree = "<group>";
@@ -124,6 +127,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42A0AEF01C0F08DF005D18AA /* cv.pdf in Resources */,
 				426052C81C0B6E5A007ED564 /* LaunchScreen.storyboard in Resources */,
 				423BF0B61C0B80EE007F5C02 /* screen.png in Resources */,
 				426052C51C0B6E5A007ED564 /* Assets.xcassets in Resources */,
