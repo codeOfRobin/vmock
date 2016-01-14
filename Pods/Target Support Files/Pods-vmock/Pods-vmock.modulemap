@@ -1,0 +1,6 @@
+framework module Pods_vmock {
+  umbrella header "Pods-vmock-umbrella.h"
+
+  export *
+  module * { export * }
+}
