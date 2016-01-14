@@ -14,6 +14,9 @@
 		422D9E831C46D6FD0090EE14 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 422D9E821C46D6FD0090EE14 /* Alamofire.framework */; };
 		422D9E841C46D7020090EE14 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 422D9E821C46D6FD0090EE14 /* Alamofire.framework */; };
 		422D9E851C46D7020090EE14 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 422D9E821C46D6FD0090EE14 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		423D80FA1C4810460005E291 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423D80F91C4810460005E291 /* SwiftyJSON.framework */; };
+		423D80FB1C48104C0005E291 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423D80F91C4810460005E291 /* SwiftyJSON.framework */; };
+		423D80FC1C48104C0005E291 /* SwiftyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 423D80F91C4810460005E291 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		42C32E051C457368002759A7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C32E041C457368002759A7 /* AppDelegate.swift */; };
 		42C32E071C457368002759A7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C32E061C457368002759A7 /* ViewController.swift */; };
 		42C32E0A1C457368002759A7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42C32E081C457368002759A7 /* Main.storyboard */; };
@@ -29,6 +32,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				423D80FC1C48104C0005E291 /* SwiftyJSON.framework in Embed Frameworks */,
 				422D9E851C46D7020090EE14 /* Alamofire.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -42,6 +46,7 @@
 		420FB32E1C46F47000A7FD5C /* pdfView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pdfView.swift; sourceTree = "<group>"; };
 		422D9E801C46D1890090EE14 /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 		422D9E821C46D6FD0090EE14 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
+		423D80F91C4810460005E291 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
 		42481EC17BBE12BDCE18E4BA /* Pods-vmock.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-vmock.release.xcconfig"; path = "Pods/Target Support Files/Pods-vmock/Pods-vmock.release.xcconfig"; sourceTree = "<group>"; };
 		42C32E011C457368002759A7 /* vmock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = vmock.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		42C32E041C457368002759A7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -59,9 +64,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				423D80FA1C4810460005E291 /* SwiftyJSON.framework in Frameworks */,
 				19EF5CFECDD23D3ED002A318 /* Pods_vmock.framework in Frameworks */,
 				422D9E841C46D7020090EE14 /* Alamofire.framework in Frameworks */,
 				422D9E831C46D6FD0090EE14 /* Alamofire.framework in Frameworks */,
+				423D80FB1C48104C0005E291 /* SwiftyJSON.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,6 +80,7 @@
 			children = (
 				422D9E801C46D1890090EE14 /* Cartfile */,
 				42C32E181C457504002759A7 /* Podfile */,
+				423D80F91C4810460005E291 /* SwiftyJSON.framework */,
 				422D9E821C46D6FD0090EE14 /* Alamofire.framework */,
 				42C32E031C457368002759A7 /* vmock */,
 				42C32E021C457368002759A7 /* Products */,

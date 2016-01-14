@@ -1,0 +1,15 @@
+{
+  "name": "vmock-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "nodemon --debug-brk app.js",
+    "start": "nodemon app.js"
+  },
+  "author": "Robin Malhotra",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.13.3"
+  }
+}

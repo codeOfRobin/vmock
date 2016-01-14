@@ -46,14 +46,6 @@ class pdfView: UIView {
         CGContextConcatCTM(context, CGPDFPageGetDrawingTransform(page, CGPDFBox.BleedBox, layer.bounds, 0, true))
         CGContextDrawPDFPage(context, page)
         CGContextRestoreGState(context);
-        
-//        UIGraphicsBeginImageContextWithOptions(CGSizeMake(200, 200), true, UIScreen.mainScreen().scale);
-//        self.layer.renderInContext(context)
-//        let finalImage = UIGraphicsGetImageFromCurrentImageContext();
-//        let finView = UIImageView(frame: CGRectMake(0, 0, 100, 100))
-//        finView.image = finalImage
-//        self.addSubview(finView)
-//        UIGraphicsEndImageContext();
     }
 
 
