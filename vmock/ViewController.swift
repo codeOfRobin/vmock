@@ -26,7 +26,6 @@ class ViewController: UIViewController {
         scrollView.frame = self.view.frame
         let computedWidth = view.frame.width - 20
         imgView.frame = CGRectMake(0, 0, computedWidth, 1.414*computedWidth )
-        print(imgView.frame.height)
         imgView.center = view.center
         view.addSubview(scrollView)
         scrollView.addSubview(imgView)
@@ -52,7 +51,7 @@ class ViewController: UIViewController {
             self.gradView.transform = CGAffineTransformMakeTranslation(0,self.imgView.frame.height)
             }, completion: { (completed) -> Void in
         })
-        Alamofire.request(.POST, "https://sqohwhhpyi.localtunnel.me")
+        Alamofire.request(.POST, "https://robin.localtunnel.me")
             .responseJSON { response in
                 print(response.result.value)
                 UIView.animateWithDuration(1.5, delay: 0, options: [UIViewAnimationOptions.BeginFromCurrentState,UIViewAnimationOptions.CurveEaseInOut], animations: { () -> Void in
@@ -79,6 +78,8 @@ class ViewController: UIViewController {
                 UIView.animateWithDuration(2, delay: Double(3)*Double(index), options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
                     self.gradView.frame.origin.y += CGFloat(section["height"].double!) + CGFloat(index)*(self.analysisHeight + 2*self.margin)
                     }, completion: { (completed) -> Void in
+                        
+                        print(self.gradView.frame.origin.y)
                         let toCut = self.pdfSections.removeLast()
 
                         let split1 = toCut.resizableSnapshotViewFromRect(CGRectMake(0, 0, toCut.frame.width, CGFloat(section["height"].doubleValue)), afterScreenUpdates: true, withCapInsets: UIEdgeInsets.init())
@@ -94,14 +95,31 @@ class ViewController: UIViewController {
                         self.pdfSections.append(split2)
                         toCut.removeFromSuperview()
                         self.scrollView.bringSubviewToFront(self.gradView)
-
+                        let analysis = analysisView(frame: CGRectMake(10,split1.frame.origin.y+split1.frame.height+10,split1.frame.width,130))
+                        let jsonArray = section["analysis"].array
+                        
+                        var stringArray :[String] = []
+                        for jsonString in jsonArray!
+                        {
+                            stringArray.append(jsonString.string!)
+                        }
+                        analysis.texts = stringArray
+                        analysis.setTextsAndCreateScroller()
+                        analysis.opaque = false
+                        analysis.layer.cornerRadius = 6
+                        analysis.layer.masksToBounds = true
+                        analysis.alpha = 0
+                        analysis.transform = CGAffineTransformMakeTranslation(0, -30)
+                        self.scrollView.addSubview(analysis)
+                        self.scrollView.bringSubviewToFront(self.gradView)
                         UIView.animateWithDuration(1, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
                             split2.frame.origin.y+=self.analysisHeight + self.margin*2
+                            analysis.alpha = 1
+                            analysis.transform = CGAffineTransformIdentity
                             }, completion: { (completed) -> Void in
                                 
                         })
                 })
-                print("done")
             }
         }
     }
